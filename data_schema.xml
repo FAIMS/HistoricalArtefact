@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSchema name="HistoricalArtefacts" preparer="Heurist user:guest guest">
+
+
+		<property name="Survey Point" type="freetext" isIdentifier="true">
+			<description>This is the spatial location assigned to the artefact(s) by one of the surveying instruments. Select the number from the field slip as it appears in the drop down list. This will automatically fill in the easting, northing and elevation data.</description>
+		</property>
+		<property name="Field ID" type="freetext" isIdentifier="true">
+			<description>This is the number assigned to the artefact(s) by the field recorder. Enter this from the field slip.</description>
+		</property>
+		<property name="Catalogue Number" type="freetext" isIdentifier="true">
+			<description>This is an automatically generated number. Each number is usually prefaced by a two letter prefix which refers to the site’s name, e.g. FN (Flinders North) 0001 (Artefact 1). DO NOT EDIT THIS INFORMATION.</description>
+		</property>
+		<property name="Easting" type="freetext">
+			<description>Data sourced from internal/external GPS.</description>
+		</property>
+		<property name="Northing" type="freetext">
+			<description>Data sourced from internal/external GPS.</description>
+		</property>
+		<property name="Elevation" type="freetext">
+			<description>Data sourced from internal/external GPS.</description>
+		</property>	
+
+
+	<!-- Acheological entity Glass -->
+
+	<ArchaeologicalElement name="Glass">
+		<property name="Glass ID" type="freetext" isIdentifier="true">
+			<description>Glass ID</description>
+		</property>
+		<property name="Diagnostic" type="enum">
+			<description>Does the fragment conform to one of the elements in the box above?</description>
+			<lookup>
+				<term>Yes<description/></term>
+				<term>No<description/></term>
+			</lookup>
+		</property>
+		<property name="Colour" type="enum">
+			<description>Use the drop down list provided. If in doubt consult the SHA historic bottle guide online.</description>
+			<lookup>
+				<term>Colourless<description/></term>
+				<term>Aqua (tint)<description/></term>
+				<term>Aqua<description/></term>
+				<term>Amethyst (solarised)<description/></term>
+				<term>Honey (solarised)<description/></term>
+				<term>Dark green/black<description/></term>
+				<term>Brown/amber<description/></term>
+				<term>Olive green<description/></term>
+				<term>Emerald green/green non-olive<description/></term>
+				<term>Cobalt blue<description/></term>
+				<term>Sapphire (pale or medium)<description/></term>
+				<term>Pink/rose<description/></term>
+				<term>Milk/white<description/></term>
+			</lookup>
+		</property>
+		<property name="Completeness" type="enum">
+			<description>How much of the original artefact is present.</description>
+			<lookup>
+				<term>Complete (95-100%)<description/></term>
+				<term>Large fragment (75-95%)<description/></term>
+				<term>Medium fragment (50-74%)<description/></term>
+				<term>Small fragment (25-49%)<description/></term>
+				<term>Tiny fragment (0-24%)<description/></term>
+			</lookup>
+		</property>
+		<property name="Frag Location" type="enum">
+			<description>Where, on the original vessel, the fragment originates.</description>
+			<lookup>
+				<term>Stuff<description/></term>
+			</lookup>
+		</property>
+		<property name="Vessel Type" type="enum">
+			<description>Description of object.</description>
+			<lookup>
+				<term>Bottle<description/></term>
+				<term>Tableware (e.g. bowl, plate)</></term>
+				<term>Condiments (salt, pepper, sauce)<description/></term>
+				<term>Tumbler (Inc. shot glass)<description/></term>
+				<term>Stemware (wine or other)<description/></term>
+				<term>Lamp glass<description/></term>
+				<term>Window glass<description/></term>
+				<term>Other<description/></term>
+			</lookup>
+		</property>
+		<property name="Tableware Type" type="enum">
+			<description>This is to record domestic tableware glass from vessels/items other than bottles. It is not applicable to bottles.</description>
+			<lookup>
+				<term>Pressed glass<description/></term>
+				<term>Cut glass<description/></term>
+				<term>Plain moulded<description/></term>
+				<term>Unknown<description/></term>
+				<term>Other<description/></term>
+			</lookup>
+		</property>
+		<property name="Frag Length" type="numeric">
+			<description>Length in mm is recorded for relevant artefacts only (i.e. usually only those that are sufficiently complete, or for which this is a meaningful measurement). Often only the maximum dimension is recorded.</description>
+		</property>
+		<property name="Frag Weight" type="numeric">
+			<description>Weight in grams is recorded for all artefacts.</description>
+		</property>
+		<property name="Frag Width" type="numeric">
+			<description>Width in mm is recorded for relevant artefacts only (i.e. usually only those that are sufficiently complete, or for which this is a meaningful measurement). Often only the maximum dimension is recorded.</description>
+		</property>
+		<property name="Frag Thickness" type="numeric">
+			<description>Thickness in mm is recorded for relevant artefacts only (i.e. only for those for which this is a meaningful measurement, such as ceramic and bottle body shards, or window glass). Often only the maximum dimension is recorded.</description>
+		</property>
+		<property name="Grouped Frag" type="enum">
+			<description>Selecting yes will open a new tab for you to record information.</description>
+			<lookup>
+				<term>Yes<description/></term>
+				<term>No<description/></term>
+			</lookup>
+		</property>
+		<property name="Number of Frags" type="numeric">
+			<description>FOR UNDIAGNOSTIC BODY SHERDS ONLY. Record the number of undiagnostic fragments to be included under the one Catalogue Number. These must be from the one type of bottle – e.g. dark brown bottle glass, olive green bottle glass, etc.</description>
+		</property>
+		<property name="Group Weight" type="numeric">
+			<description>A total weight in grams for all of the sherds together.</description>
+		</property>
+		<property name="Group Max Length" type="numeric">
+			<description>The length of the longest sherd in the group.</description>
+		</property>
+		<property name="Group Max Width" type="numeric">
+			<description>The width of the widest sherd in the group.</description>
+		</property>
+		<property name="Group Max Thickness" type="numeric">
+			<description>The thickness of the thickest sherd in the group.</description>
+		</property>
+		<property name="Group Min Length" type="numeric">
+			<description>The length of the shortest sherd in the group.</description>
+		</property>
+		<property name="Group Min Width" type="numeric">
+			<description>The width of the narrowest sherd in the group.</description>
+		</property>
+		<property name="Group Min Thickness" type="numeric">
+			<description>The thickness of the thinnest sherd in the group.</description>
+		</property>
+		<property name="Base Diameter" type="numeric">
+			<description>A measurement in millimetres of the external base diameter.</description>
+		</property>
+		<property name="Base Thickness" type="numeric">
+			<description>A measurement in millimetres of the thickest portion of the base.</description>
+		</property>
+		<property name="Kick Up Depth" type="numeric">
+			<description>A measurement in millimetres of the external depth of the kickup (i.e. from the external heel to the centre of the kickup [also referred to as pushup] on the outside of the base).</description>
+		</property>
+		<!-- TAKING A BREAK FROM GLASS BECAUSE CONFLICTING DATA -->
+
+	</ArchaeologicalElement>
+
+	<ArchaeologicalElement name="Metal">
+		<property name="Metal ID" type="freetext" isIdentifier="true">
+			<description>Metal ID</description>
+		</property>
+		<property name="Metal Type" type="freetext">
+			<description>Records type of metal in question. Copper alloy is a mixture of metals. It is a generic term for those alloys made up of copper blended with tin (bronze), zinc (brass) or lead, or other metals. It will not be magnetic and may have a bluish, greenish or reddish hue. 
+			Nickel silver is used extensively as a base metal on silver-plated flatware, hence the common abbreviation EPNS (Electro Plated Nickel Silver) or EPGS (Electro Plated German Silver). It is resistant to corrosion and is not magnetic. 
+			Sheffield Plate, was formally patented for industrial use by Thomas Bolsover of Sheffield in 1742. 
+			Iron will rust and will often be highly corroded in an archaeological context. It will be magnetic. 
+			Lead will be much heavier and will often form a white soft layer of corrosion over its surface.</description>
+			<lookup>
+				<term>Unknown<description/></term>
+				<term>Brass/copper alloy<description/></term>
+				<term>Nickel silver (or other base metal)<description/></term>
+				<term>Cast Iron<description/></term>
+				<term>Sheet Iron<description/></term>
+				<term>Corrugated iron<description/></term>
+				<term>Other Iron<description/></term>
+				<term>Copper<description/></term>
+				<term>Brass<description/></term>
+				<term>Round Wire<description/></term>
+				<term>Barbed Wire<description/></term>
+				<term>Forged metal<description/></term>
+				<term>Metal strapping<description/></term>
+				<term>Lead<description/></term>
+			</lookup>
+		</property>
+		<property name="Completeness" type="enum">
+			<description>How much of the original artefact is present.</description>
+			<lookup>
+				<term>1-25%<description/></term>
+				<term>26-50%<description/></term>
+				<term>51-75%<description/></term>
+				<term>76-100%<description/></term>
+				<term>Complete<description/></term>
+			</lookup>
+		</property>
+		<property name="Length" type="numeric">
+			<description>Length in mm is recorded for relevant artefacts only (i.e. usually only those that are sufficiently complete, or for which this is a meaningful measurement). Often only the maximum dimension is recorded.</description>
+		</property>
+		<property name="Thickness" type="numeric">
+			<description></description>
+		</property>
+		<property name="Width" type="numeric">
+			<description></description>
+		</property>
+		<property name="Weight" type="numeric">
+			<description></description>
+		</property>
+		<property name="Function" type="numeric">
+			<description></description>
+		</property>
+		<property name="PortionComponent" type="numeric">
+			<description></description>
+		</property>
+	</ArchaeologicalElement>
+
+	<ArchaeologicalElement name="Ceramic">
+
+	</ArchaeologicalElement>	
+
+
+</dataSchema>

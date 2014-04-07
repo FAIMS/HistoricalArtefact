@@ -1,0 +1,142 @@
+User user;
+String userid;
+
+setSyncEnabled(true);
+setFileSyncEnabled(true);
+
+/*** control ***/
+onEvent("control", "show", "refreshCatalogues()");
+onEvent("control", "load", "loadMetalAttributes()");
+
+// onEvent("control/Catalogue/newCatalogue", "click", "newCatalogue()");
+// onEvent("control/Catalogue/CatalogueList", "click", "loadCatalogue()");
+
+refreshCatalogues(){
+    populateDropDown("control/Artefact/Glass", fetchArchEntList("Catalogue"));
+}
+
+/** ArchEnt: Metal **/
+onEvent("Metal/Admin/Update", "delayclick", "saveMetal()");
+onEvent("Metal/Metal/Update", "delayclick", "saveMetal()");
+onEvent("Metal/Buttons/Update", "delayclick", "saveMetal()");
+onEvent("Metal/NailsFasteners/Update", "delayclick", "saveMetal()");
+onEvent("Metal/OtherInfo/Update", "delayclick", "saveMetal()");
+
+String metal_id = null;
+
+newMetal(){
+    metal_id = null;
+    newTabGroup("Metal");
+}
+loadMetal() {
+    metal_id = getListItemValue();
+    loadMetalFrom(metal_id);
+}
+loadMetalFrom(entid) {
+    metal_id = entid;
+    if (isNull(entid)) return;
+    showTabGroup("Metal", entid);
+}
+
+saveMetal() {
+    if (isNull(getFieldValue("Metal/Admin/CatalogueNumber"))) { 
+        showWarning("Validation Error", "Cannot save Metal without Catalogue Number.");
+        showTabGroup("Metal");
+        return;
+    }
+    if (!isNull(metal_id)) {
+        entity = fetchArchEnt(metal_id);
+    }
+    saveTabGroup("Metal", metal_id, null, null, "metal_id = getLastSavedRecordId();");
+}
+
+showButtonTab() {
+    Object name = fetchOne("select vocabName from vocabulary where vocabid = '"+getFieldValue("Metal/Metal/Buttons")+"';");
+    if (!isNull(name)){
+        String vocab = name.get(0);
+        if(vocab.equals("Yes")) {
+            showTab("Metal/Buttons");
+        }
+    }
+}
+
+showNailsTab() {
+    Object name = fetchOne("select vocabName from vocabulary where vocabid = '"+getFieldValue("Metal/Metal/NailsFasteners")+"';");
+    if (!isNull(name)){
+        String vocab = name.get(0);
+        if(vocab.equals("Yes")) {
+            showTab("Metal/NailsFasteners");
+        }
+    }
+}
+
+loadMetalAttributes() {
+    populateDropDown("Metal/Admin/SurveyPoint", makeVocab("Survey Point"));
+    populateDropDown("Metal/Metal/MetalType", makeVocab("Metal Type"));
+    populateDropDown("Metal/Metal/Completeness", makeVocab("Completeness"));
+    populateDropDown("Metal/Metal/Modification", makeVocab("Modification"));
+    populateDropDown("Metal/Metal/Buttons", makeVocab("Buttons"));
+    populateDropDown("Metal/Metal/NailsFasteners", makeVocab("Nails Fasteners"));
+    populateDropDown("Metal/Buttons/AttachmentMethods", makeVocab("Attachment Methods"));
+    populateDropDown("Metal/Buttons/ManufactureMethod", makeVocab("Buttons Manufacture Method"));
+    populateDropDown("Metal/Butons/Construction", makeVocab("Construction"));
+    populateDropDown("Metal/Buttons/ShankType", makeVocab("Shank Type"));
+    populateDropDown("Metal/Buttons/SewThroughType", makeVocab("Sew Through Type"));
+    populateDropDown("Metal/NailsFasteners/ManufactureMethod", makeVocab("Nail Fasteners Manufacture Method`"));
+    populateDropDown("Metal/NailsFasteners/Form", makeVocab("Form"));
+    populateDropDown("Metal/NailsFasteners/SizeClass", makeVocab("Size Class"));
+    populateDropDown("Metal/NailsFasteners/HeadShape", makeVocab("Head Shape"));
+    populateDropDown("Metal/NailsFasteners/ShaftCrossSection", makeVocab("Shaft Cross Section"));
+    populateDropDown("Metal/NailsFasteners/ShaftShape", makeVocab("Shaft Shape"));
+    populateDropDown("Metal/NailsFasteners/Features", makeVocab("Features"));
+}
+
+// MISC FUNCTIONS
+
+saveEntitiesToRel(type, entity1, entity2) {
+    if (isNull(entity1) || isNull(entity2)) return;
+    rel_id = saveRel(null, type, null, null);
+    addReln(entity1, rel_id, null);
+    addReln(entity2, rel_id, null);
+}
+
+makeVocab(String attrib){
+    Object a = fetchAll("select vocabid, vocabname from vocabulary join attributekey using (attributeid) where attributename = '"+attrib+"' ");
+    return a;
+}
+
+makePictureGallery(String attrib){
+    fetchAll("select vocabid, vocabname, pictureurl from vocabulary left join attributekey using (attributeid) where attributename = '" + attrib + "';");
+}
+
+/*** Uneditable - you can edit the code below with extreme precaution ***/
+/*** USER ***/
+
+getDefaultUsersList() {
+    users = fetchAll("select userid, fname || ' ' || lname from user");
+    return users;
+}
+
+populateListForUsers(){
+    populateList("user/usertab/users", getDefaultUsersList());
+}
+
+populateListForUsers();
+
+String username = "";
+String device = "";
+
+login(){
+    Object userResult = fetchOne("select userid,fname,lname,email from user where userid='" + getListItemValue() + "';");
+    User user = new User(userResult.get(0),userResult.get(1),userResult.get(2),userResult.get(3));
+    userid = userResult.get(0);
+    setUser(user);
+    username = userResult.get(1) + " " + userResult.get(2);
+    showTabGroup("control");
+}
+
+doNotDelete(){
+    showToast("Delete Cancelled.");
+}
+
+onEvent("user/usertab/users", "click", "login()");
